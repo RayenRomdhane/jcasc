@@ -1,0 +1,452 @@
+jobs:
+  - script: >
+      folder('configserver')
+  - script: >
+      folder('oauth2')
+  - script: >
+      folder('hr')
+  - script: >
+      folder('notification')
+  - script: >
+      folder('mission')
+  - script: >
+      folder('career')
+  - script: >
+      folder('td')
+  - script: >
+      folder('ui')
+  - script: >
+      folder('SDK')
+  - script: >
+        pipelineJob('configserver/PipelineCi') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('config-server/ci/jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+          properties {
+            copyArtifactPermissionProperty {
+              projectNames('PipelineCd')
+            }
+          }
+        }
+  - script: >
+        pipelineJob('configserver/PipelineCd') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('config-server/cd/jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+        }
+  - script: >
+        pipelineJob('oauth2/PipelineCi') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('oauth2/ci/Jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+          properties {
+            copyArtifactPermissionProperty {
+              projectNames('PipelineCd')
+            }
+          }
+        }
+  - script: >
+        pipelineJob('oauth2/PipelineCd') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('oauth2/cd/jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+        }
+  - script: >
+        pipelineJob('hr/PipelineCi') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('hr-ms/ci/Jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+          properties {
+            copyArtifactPermissionProperty {
+              projectNames('PipelineCd')
+            }
+          }
+        }
+  - script: >
+        pipelineJob('hr/PipelineCd') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('hr-ms/cd/jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+        }
+  - script: >
+        pipelineJob('notification/PipelineCi') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('notification-ms/ci/Jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+          properties {
+            copyArtifactPermissionProperty {
+              projectNames('PipelineCd')
+            }
+          }
+        }
+  - script: >
+        pipelineJob('notification/PipelineCd') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('notification-ms/cd/jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+        }
+  - script: >
+        pipelineJob('mission/PipelineCi') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('mission-ms/ci/Jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+          properties {
+            copyArtifactPermissionProperty {
+              projectNames('PipelineCd')
+            }
+          }
+        }
+  - script: >
+        pipelineJob('mission/PipelineCd') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('mission-ms/cd/jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+        }
+  - script: >
+        pipelineJob('career/PipelineCi') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('career-ms/ci/Jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+          properties {
+            copyArtifactPermissionProperty {
+              projectNames('PipelineCd')
+            }
+          }
+        }
+  - script: >
+        pipelineJob('career/PipelineCd') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('career-ms/cd/jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+        }
+  - script: >
+        pipelineJob('td/PipelineCi') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('td-ms/ci/Jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+          properties {
+            copyArtifactPermissionProperty {
+              projectNames('PipelineCd')
+            }
+          }
+        }
+  - script: >
+        pipelineJob('td/PipelineCd') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('td-ms/cd/jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+        }    
+  - script: >
+        pipelineJob('ui/PipelineCi') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('talenteo-ui/ci/Jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+          properties {
+            copyArtifactPermissionProperty {
+              projectNames('PipelineCd')
+            }
+          }
+        }
+  - script: >
+        pipelineJob('ui/PipelineCd') {
+          parameters {
+            choiceParam('OPTION', ['Dev', 'Prod'])
+          }
+          definition {
+            cpsScm {
+              scriptPath('talenteo-ui/cd/jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+        } 
+  
+  - script: >
+        pipelineJob('SDK/Talenteo-sdk') {
+          definition {
+            cpsScm {
+              scriptPath('talenteo-sdk/jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+        }
+  - script: >
+        pipelineJob('SDK/Talenteo-domain') {
+          definition {
+            cpsScm {
+              scriptPath('talenteo-domain/jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+        } 
+ 
+  - script: >
+        pipelineJob('SDK/Easy-ms') {
+          definition {
+            cpsScm {
+              scriptPath('easy-ms/jenkinsfile')
+              scm {
+                git {
+                  remote {
+                    credentials('gitlab-creds')
+                    url('https://gitlab.com/devops4184840/Talenteo-ops.git')
+                  }
+                  branch('main')
+                }
+              }
+              lightweight(true)
+            }
+          }
+        }
+  
